@@ -1,0 +1,18 @@
+# /etc/systemd/system/openamr-server.service
+
+[Unit]
+Description=OpenAMR Server Docker Compose Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+WorkingDirectory=/home/movven/projects/openamr-server
+ExecStart=/usr/bin/docker-compose up
+ExecStop=/usr/bin/docker-compose down
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target
